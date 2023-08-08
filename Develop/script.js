@@ -1,15 +1,16 @@
 // Assignment code here
-// creating the array
+// creating the array for the password elements
 var lettersLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "x", "y", "z"];
 var lettersUpper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "X", "Y", "Z"];
 var num = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 var specialChar = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
-// checking if the array works
-console.log(lettersLower)
-console.log(lettersUpper)
-console.log(num)
-console.log(specialChar)
 
+// creating the random letter generator
+var lettersLowerIndex = Math.floor(Math.random() * lettersLower.length);
+var rlgLower = lettersLower[lettersLowerIndex]
+
+// checking the rlg
+console.log(rlgLower)
 
 // // Get references to the #generate element
 // var generateBtn = document.querySelector("#generate");
