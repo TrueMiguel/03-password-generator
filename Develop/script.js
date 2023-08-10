@@ -1,3 +1,6 @@
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
+
 // Assignment code here
 
 // creating the array for the password elements
@@ -8,8 +11,11 @@ var specialChar = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '
 // creating a blank var for the added arrays to concatnate to
 var pwArray = []
 
-// a blank array checker for the min password criteria
-var arrayMinCheck = {}
+// a blank variable for how many minumum unique criteria
+var minReq = 0
+
+// a blank variable for which password criteria need to be there
+var minCheck = []
 
 // random letter generator lower
 var lettersLowerIndex = Math.floor(Math.random() * lettersLower.length);
@@ -28,8 +34,6 @@ var specialIndex = Math.floor(Math.random() * specialChar.length);
 var rsg = specialChar[specialIndex]
 
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
 
 var fullPassword = []
 
@@ -55,7 +59,13 @@ function generatePassword() {
   window.alert("Please decide on the following character types that will make up the password");
   var passwordLenght = prompt("Please choose a lenght for the password. 8 to 128 characters only");
   // converting lenth to int
-  var passwordLenghtInt = parseInt(passwordLenght)
+  var passwordLenghtInt = parseInt(passwordLenght) 
+  
+  // Make sure that it is a integer and not a string 
+  if (!passwordLenghtInt) {
+    window.alert("Please enter a numerical value.")
+    generatePassword();
+  }
   // running pwIndex here to stop program if prompt isn't 8-128.
   pwIndex = pwInt();
   var typeLower = confirm("Do you want lower case characters?");
@@ -63,71 +73,88 @@ function generatePassword() {
   var typeNum = confirm("Do you want numeric characters?");
   var typeSpecial = confirm ("Do you want special characters?");
 
+  // checks to see at least one criteria is selected.
+  if (
+    !typeLower && !typeUpper && !typeNum && !typeSpecial
+  ) {
+    window.alert("Please select at least one criteria for your password.")
+    generatePassword()
+  }
+
   // function to add to the pwArray only the password criteria that is needed. 
  var pwParam = function () {
   if (typeLower === true) {
     pwArray = pwArray.concat(lettersLower);
-    arrayMinCheck.ll = lettersLower
+    minReq++;
+    minCheck.push("ll");
     // arrayMinCheck.chosenArray.push(lettersLower);
   }  
   
   if (typeUpper === true) {
     pwArray = pwArray.concat(lettersUpper);
-    arrayMinCheck.chosenArray.push(lettersUpper);
+    minReq++;
+    minCheck.push("lu");
   }
 
   if (typeNum === true) {
     pwArray = pwArray.concat(num);
-    arrayMinCheck.chosenArray.push(num);
-
+    minReq++;
+    minCheck.push("nu");
   }
 
   if (typeSpecial === true) {
-    pwArray = pwArray.concat(specialChar)
-        arrayMinCheck.chosenArray.push(specialChar);
+    pwArray = pwArray.concat(specialChar);
+    minReq++;
+    minCheck.push("sc");
+  }
 
   }
 
-}
+  pwParam();
 
-pwParam();
+  // for loop to iterate randomly throught the password array
+  for (;fullPassword.length != pwIndex;) {
+    var i = (Math.floor(Math.random() * pwArray.length))
+    fullPassword = fullPassword.concat(pwArray[i])
+  }
 
-// for loop to iterate randomly throught the password array
-for (;fullPassword.length != pwIndex;) {
-  var i = (Math.floor(Math.random() * pwArray.length))
-  fullPassword = fullPassword.concat(pwArray[i])
-}
-
-
-// loop to check to make sure that the at minum 1 of the selected password criteria is met
-if (!pwArray.includes())
+  // removing characters from the password so that when I go to the below if statement it isn't over the desired limit
+  fullPassword.splice(0,minReq)
 
 
-// fullPassword.join("") to combine password array into string
-  // console.log(fullPassword.join(""))
+  // checking if the criteria is selected. If so then adds atleast one element from that array randomly in a random position
+  if (minCheck.includes("ll")) {
+    var i = (Math.floor(Math.random() * fullPassword.length)); 
+    fullPassword.splice(i, 0, rlgLower);
+  } 
 
-console.log(arrayMinCheck)
+  if (minCheck.includes("lu")) {
+    var i = (Math.floor(Math.random() * fullPassword.length));
+    fullPassword.splice(i, 0, rlgUpper);
+  }
 
-  // passwordLenght will give me the value I need for how big the pw needs to be. 
-  // then I need to have the program understand that I need x amount of lower, upper, num, and special. All random. 
-  // if / else if loop to check the wanted need of the password. 
-  // then have it iterate through the selected criteria
-  // have a route where if everything is false then ask if they want to generate the pw if not then end it. 
-// && passwordLenghtInt <= 128
+  if (minCheck.includes("nu")) {
+    var i = (Math.floor(Math.random() * fullPassword.length));
+    fullPassword.splice(i, 0, rng);
+  } 
 
-  // checking pw lenght
- 
-
+  if (minCheck.includes("sc")) {
+    var i = (Math.floor(Math.random() * fullPassword.length));
+    fullPassword.splice(i, 0, rsg);
+  }
+  
+  // fullPassword.join("") to combine password array into string
+  return fullPassword.join("")
+  
 }
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword() 
 
-  
   var passwordText = document.querySelector("#password");
 
-  // passwordText.value = password;
+  passwordText.value = password;
 
 
 }
@@ -136,10 +163,7 @@ generateBtn.addEventListener("click", writePassword);
 
 // need to make button work and when pressed it will generate a password
 
-// multiple window.prompt() for  the password criteria
-  // this is password lenght 8-128 characters
-  // if to include character types
-  // ask wether or not to include lowercase, uppercase, numeric, and or special characters.
 
-writePassword()  
+
+// writePassword()  
 
