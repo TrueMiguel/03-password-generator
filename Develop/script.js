@@ -33,8 +33,6 @@ var rng = num[numIndex]
 var specialIndex = Math.floor(Math.random() * specialChar.length);
 var rsg = specialChar[specialIndex]
 
-
-
 var fullPassword = []
 
 function generatePassword() {
@@ -82,32 +80,31 @@ function generatePassword() {
   }
 
   // function to add to the pwArray only the password criteria that is needed. 
- var pwParam = function () {
-  if (typeLower === true) {
-    pwArray = pwArray.concat(lettersLower);
-    minReq++;
-    minCheck.push("ll");
-    // arrayMinCheck.chosenArray.push(lettersLower);
-  }  
-  
-  if (typeUpper === true) {
-    pwArray = pwArray.concat(lettersUpper);
-    minReq++;
-    minCheck.push("lu");
-  }
+  var pwParam = function () {
+    if (typeLower === true) {
+      pwArray = pwArray.concat(lettersLower);
+      minReq++;
+      minCheck.push("ll");
+      // arrayMinCheck.chosenArray.push(lettersLower);
+    }  
+    
+    if (typeUpper === true) {
+      pwArray = pwArray.concat(lettersUpper);
+      minReq++;
+      minCheck.push("lu");
+    }
 
-  if (typeNum === true) {
-    pwArray = pwArray.concat(num);
-    minReq++;
-    minCheck.push("nu");
-  }
+    if (typeNum === true) {
+      pwArray = pwArray.concat(num);
+      minReq++;
+      minCheck.push("nu");
+    }
 
-  if (typeSpecial === true) {
-    pwArray = pwArray.concat(specialChar);
-    minReq++;
-    minCheck.push("sc");
-  }
-
+    if (typeSpecial === true) {
+      pwArray = pwArray.concat(specialChar);
+      minReq++;
+      minCheck.push("sc");
+    }
   }
 
   pwParam();
@@ -145,7 +142,6 @@ function generatePassword() {
   
   // fullPassword.join("") to combine password array into string
   return fullPassword.join("")
-  
 }
 
 // Write password to the #password input
@@ -155,15 +151,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
-
 }
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-// need to make button work and when pressed it will generate a password
-
-
-
-// writePassword()  
-
