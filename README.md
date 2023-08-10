@@ -11,10 +11,6 @@ This project is to create a random password generator.
 
 - [About The Project](#about_project)
 - [Deployment Location](#deployment_location)
-- [Challenges](#challenges)
-- [Author Credit](#author_credit)
-- [Acknowledgments](#acknowledgments)
-- [Resources](#resources)
 - [Final Note](#final_note)
 
 ---
@@ -48,35 +44,14 @@ This project is built with HTML, CSS, and JavaScript
 
 https://truemiguel.github.io/03-password-generator/ 
 
----
-
-## Challenges <a id="challenges"></a>
-
-<!-- Challenges -->
-
----
-
-
-## Author Credit <a id="author_credit"></a>
-
-<!-- Author Credits -->
-
----
-
-## Acknowledgments <a id="acknowledgments"></a>
-
-<!-- Acknowledgments -->
-
----
-
-## Resources <a id="resources"></a>
-
-<!-- Resources -->
+![Example of generator rejecting a non interger value](<assets/Images/Screen shot.PNG>)
 
 ---
 
 ## Final Note <a id="final_note"></a>
 
 <!-- Final Note -->
+This password generator will create a password with a lenght of 8 to 128 with all the selected criteria that is asked. It will also have a minum of at least 1 of each of those requested characters.
+The password will be completly random everytime.
 
 ---

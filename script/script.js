@@ -33,10 +33,10 @@ var rng = num[numIndex]
 var specialIndex = Math.floor(Math.random() * specialChar.length);
 var rsg = specialChar[specialIndex]
 
-var fullPassword = []
 
 function generatePassword() {
-
+  var fullPassword = []
+  
   // variable function to check if prompt number is 8 - 128.
   var pwInt = function() {
     if (passwordLenghtInt < 8) {
